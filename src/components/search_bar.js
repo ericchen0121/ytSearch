@@ -16,6 +16,9 @@ class SearchBar extends Component {
         <input
           value={this.state.term}
           onChange={ event => this.onInputChange(event.target.value) }
+          //
+          // NOTE: If you want to trigger search only on an Enter click, uncomment code
+          //
           onKeyPress={event => {
             if(event.key === 'Enter') {
               this.props.onSearchChange(this.state.term)
@@ -28,7 +31,7 @@ class SearchBar extends Component {
 
   onInputChange(term) {
     this.setState({term})
-    // this.props.onSearchChange(this.state.term)
+    this.props.onSearchChange(this.state.term)
   }
 
 }
