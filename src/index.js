@@ -27,10 +27,6 @@ class App extends Component {
 
   }
 
-  onVideoListItemClick() {
-    // this.setState({ selectedVideo })
-  }
-
   render() {
     return (
       <div>
