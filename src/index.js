@@ -12,22 +12,34 @@ class App extends Component {
     super(props);
 
     this.state = {
-      videos: []
+      videos: [],
+      selectedVideo: ''
     }
 
     // called with an object and a callback function
     YTSearch({key: API_KEY, term: 'efren'}, (videos) => {
-      this.setState({ videos })
+      console.log(videos);
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      })
     })
 
+  }
+
+  onVideoListItemClick() {
+    // this.setState({ selectedVideo })
   }
 
   render() {
     return (
       <div>
         <SearchBar />
-        <VideoDetail video={this.state.videos[0]} />
-        <VideoList videos={this.state.videos} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList
+          videos={this.state.videos}
+          onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+        />
       </div>
     );
   }
