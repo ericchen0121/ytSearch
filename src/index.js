@@ -16,21 +16,23 @@ class App extends Component {
       selectedVideo: ''
     }
 
-    // called with an object and a callback function
-    YTSearch({key: API_KEY, term: 'efren'}, (videos) => {
-      console.log(videos);
+    this.videoSearch('efren');
+
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
       })
     })
-
   }
 
   render() {
     return (
       <div>
-        <SearchBar />
+        <SearchBar onSearchChange={term => this.videoSearch(term)} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           videos={this.state.videos}
